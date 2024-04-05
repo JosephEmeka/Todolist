@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8cc54682-2443-4de4-81e2-73761b109b3b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/controllers/ServicesControllers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/data/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/data/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/LogOutRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/LoginResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/LogoutResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/RegisterResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/DoubleUserRegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/EmptyFirstNameRegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/EmptyLastNameRegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/EmptyPasswordLoginException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/EmptyRegistrationEntryException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/EmptyUserNameLoginException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/EmptyUserNameRegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/WhiteSpaceException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/exceptions/WrongPasswordException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/services/UserServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/services/UserServicesImplementation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/utils/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TodolistProject/MainTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/TodolistProject/Services/UserServicesImplementationTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2eeHdVI3MnSRtJdJbVR6tj3l77B" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.MainTests.executor": "Run",
+    "JUnit.UserServicesImplementationTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Main.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hp/IdeaProjects/Todolist/src/main/java/TodolistProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\IdeaProjects\Todolist\src\main\java\TodolistProject" />
+      <recent name="C:\Users\hp\IdeaProjects\Todolist\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="TodolistProject" />
+      <recent name="MainTest" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserServicesImplementationTest">
+    <configuration name="MainTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Todolist" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TodolistProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TodolistProject" />
+      <option name="MAIN_CLASS_NAME" value="TodolistProject.MainTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServicesImplementationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Todolist" />
+      <option name="PACKAGE_NAME" value="TodolistProject.Services" />
+      <option name="MAIN_CLASS_NAME" value="TodolistProject.Services.UserServicesImplementationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="Todolist" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="TodolistProject.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TodolistProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServicesImplementationTest" />
+        <item itemvalue="JUnit.MainTests" />
+        <item itemvalue="Spring Boot.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8cc54682-2443-4de4-81e2-73761b109b3b" name="Changes" comment="" />
+      <created>1712258221313</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712258221313</updated>
+      <workItem from="1712258223286" duration="6746000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
