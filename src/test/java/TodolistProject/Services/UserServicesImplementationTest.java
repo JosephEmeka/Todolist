@@ -171,7 +171,7 @@ class UserServicesImplementationTest {
         assertTrue(userRepository.findByUserName("google-man").get().getIsLoggedIn());
     }
     @Test
-    void testUserCanBeLoggedInWithWrongUserName(){
+    void testUserCannotBeLoggedInWithWrongUserName(){
         userRepository.deleteAll();
         LoginRequest newLoginRequest = new LoginRequest();
         newLoginRequest.setUsername("google-man");
@@ -188,7 +188,7 @@ class UserServicesImplementationTest {
         assertThrows(NoSuchElementException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
     }
     @Test
-    void testUserCanBeLoggedInWithWrongPassword(){
+    void testUserCannotBeLoggedInWithWrongPassword(){
         userRepository.deleteAll();
         UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
@@ -208,7 +208,7 @@ class UserServicesImplementationTest {
     }
 
     @Test
-    void testUserCanBeLoggedInWithEmptyUserName(){
+    void testUserCannotBeLoggedInWithEmptyUserName(){
         userRepository.deleteAll();
         var userServicesImplementation = new UserServicesImplementation(userRepository);
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
@@ -228,7 +228,7 @@ class UserServicesImplementationTest {
     }
 
     @Test
-    void testUserCanBeLoggedInWithWhiteSpaceUserName(){
+    void testUserCannotBeLoggedInWithWhiteSpaceUserName(){
         userRepository.deleteAll();
         var userServicesImplementation = new UserServicesImplementation(userRepository);
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
@@ -268,7 +268,7 @@ class UserServicesImplementationTest {
     }
 
     @Test
-    void testUserCanBeLoggedInWithWhiteSpacePassword(){
+    void testUserCannotBeLoggedInWithWhiteSpacePassword(){
         userRepository.deleteAll();
         var userServicesImplementation = new UserServicesImplementation(userRepository);
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
@@ -314,5 +314,103 @@ class UserServicesImplementationTest {
         userServicesImplementation.logoutUser(newLogOutRequest);
         assertFalse(userRepository.findByUserName("google-man").get().getIsLoggedIn());
     }
+
+    @Test
+    void testUserCanCreateTask(){
+        RegisterRequest newUserRegistrationRequest = new RegisterRequest();
+        newUserRegistrationRequest.setFirstName("Johnny");
+        newUserRegistrationRequest.setLastName("Joe");
+        newUserRegistrationRequest.setUserName("google-man");
+        newUserRegistrationRequest.setEmail("google-man@gmail.com");
+        newUserRegistrationRequest.setPassword("passworded");
+        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
+        userServicesImplementation.registerUser(newUserRegistrationRequest);
+        assertEquals(1, userRepository.count());
+        CreateTaskRequest createTaskRequest = new CreateTaskRequest();
+
+
+    }
+
+    @Test
+    void test_UserCannotCreateTaskWithoutLogin(){
+
+
+    }
+
+    @Test
+    void testUserCanDeleteTask(){}
+
+    @Test
+    void test_UserCannotDeleteTaskWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanUpdateTask(){
+
+    }
+
+    @Test
+    void test_UserCannotUpdateTaskWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanGetTask(){
+
+    }
+
+    @Test
+    void test_UserCannotGetTaskWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanGetTaskList(){
+
+    }
+
+    @Test
+    void test_UserCannotGetTaskListWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanGetTaskListByUserId(){
+
+    }
+
+    @Test
+    void test_UserCannotGetTaskListByUserIdWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanGetTaskListByTaskId(){
+
+    }
+
+    @Test
+    void test_UserCannotGetTaskListByTaskIdWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanGetTaskListByUserIdAndTaskId(){
+
+    }
+
+    @Test
+    void test_UserCannotGetTaskListByUserIdAndTaskIdWithoutLogin(){
+
+    }
+
+    @Test
+    void testUserCanGetTaskListByTaskIdAndUserId(){
+
+    }
+
+
+
 }
 

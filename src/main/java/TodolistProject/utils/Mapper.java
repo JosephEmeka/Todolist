@@ -1,13 +1,10 @@
 package TodolistProject.utils;
 
 
+import TodolistProject.data.model.Task;
 import TodolistProject.data.model.User;
-import TodolistProject.dtos_requests.LogOutRequest;
-import TodolistProject.dtos_requests.LoginRequest;
-import TodolistProject.dtos_requests.RegisterRequest;
-import TodolistProject.dtos_response.LoginResponse;
-import TodolistProject.dtos_response.RegisterResponse;
-import TodolistProject.dtos_response.LogoutResponse;
+import TodolistProject.dtos_requests.*;
+import TodolistProject.dtos_response.*;
 
 
 public class Mapper {
@@ -57,8 +54,69 @@ public class Mapper {
         return  userLogoutResponse;
     }
 
+    public  static Task addTaskRequestMap(RegisterTaskRequest newTaskRequest) {
+        Task task = new Task();
+        task.setTitle(newTaskRequest.getTitle());
+        task.setDescription(newTaskRequest.getDescription());
+        task.setDueDateTime(newTaskRequest.getDueDate());
+        return task;
+    }
+
+    public static AddTaskResponse addTaskResponseMap(Task task){
+        AddTaskResponse addTaskResponse = new AddTaskResponse();
+        addTaskResponse.setTitle(task.getTitle());
+        addTaskResponse.setDescription(task.getDescription());
+        addTaskResponse.setDueDate(task.getDueDateTime());
+        return addTaskResponse;
+    }
+
+    public static Task editTaskRequestMap(EditTaskRequest request) {
+        Task task = new Task();
+            task.setTitle(request.getTitle());
+            task.setDescription(request.getDescription());
+            task.setDueDateTime(request.getDueDate());
+            task.setStartTime(request.getStartTime());
+            task.setEndTime(request.getEndTime());
+        return task;
+    }
+
+    public static EditTaskResponse editTaskResponseMap(Task task) {
+        EditTaskResponse response = new EditTaskResponse();
+        response.setTaskId(task.getTaskId());
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        response.setDueDate(task.getDueDateTime());
+        return response;
+    }
+
+    public static Task deleteTaskRequestMap(DeleteTaskRequest deleteTaskRequest){
+        Task task = new Task();
+            task.setAuthor(deleteTaskRequest.getAuthor());
+            task.setTitle(deleteTaskRequest.getTitle());
+        return task;
+    }
+
+    public static DeleteTaskResponse deleteTaskResponseMap(Task task){
 
 
+        return null;
+    }
+
+    public static PendingTaskResponse pendingTaskResponseMap(Task task) {
+        PendingTaskResponse response = new PendingTaskResponse();
+        response.setTaskId(task.getTaskId());
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        return response;
+    }
+
+    public static CompletedTaskResponse completedTaskResponseMap(Task task) {
+        CompletedTaskResponse response = new CompletedTaskResponse();
+        response.setTaskId(task.getTaskId());
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        return response;
+    }
 }
 
 

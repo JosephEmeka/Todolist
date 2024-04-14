@@ -23,7 +23,7 @@ import static TodolistProject.utils.Mapper.*;
 @Service
 public class UserServicesImplementation implements UserServices{
     private final UserRepository userRepository;
-@Autowired
+    @Autowired
     public UserServicesImplementation(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -110,4 +110,5 @@ public class UserServicesImplementation implements UserServices{
         }
 
     }
+
 }
