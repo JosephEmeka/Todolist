@@ -10,6 +10,8 @@ import TodolistProject.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -37,12 +39,15 @@ public class TaskServicesImplementation implements TaskServices {
 
     @Override
     public EditTaskResponse editTask(EditTaskRequest editTaskRequest) throws TaskAlreadyAddedException {
-        Task taskToUpdate = editTaskRequestMap(editTaskRequest);
-        validateTaskRequest(taskToUpdate);
-        if(taskRepository.findByAuthorAndTitle(taskToUpdate.getAuthor().toLowerCase().trim(), taskToUpdate.getTitle().toLowerCase().trim()).isEmpty())
-            taskRepository.save(taskToUpdate);
-        else throw new TaskAlreadyAddedException("Task already added");
-        return editTaskResponseMap(taskToUpdate);
+        Task existingTask = taskRepository.findByAuthorAndTitle(editTaskRequest.getAuthor().toLowerCase().trim(), editTaskRequest.getTitle().toLowerCase().trim())
+                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+
+        Task updatedTask = editTaskRequestMap(editTaskRequest, existingTask);
+        validateTaskRequest(updatedTask);
+
+        taskRepository.save(updatedTask);
+
+        return editTaskResponseMap(updatedTask);
     }
 
 
@@ -77,6 +82,25 @@ public void  validateTaskRequest(Task task) {
                     .collect(Collectors.toList());
         }
         throw new NoPendingTaskException("No Pending Task for this " + pendingTaskRequest.getAuthor());
+    }
+
+    public CompletedTaskResponse markTaskAsCompleted(MarkTaskCompletedRequest markTaskCompletedRequest) {
+
+        Task taskToComplete = taskRepository.findByAuthorAndTitle(markTaskCompletedRequest.getAuthor().toLowerCase().trim(), markTaskCompletedRequest.getTitle().toLowerCase().trim())
+                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+
+        if (!taskToComplete.getStatus().equals(PendingStatus.COMPLETED)) {
+            taskToComplete.setStatus(PendingStatus.COMPLETED);
+            taskToComplete.setEndTime(LocalDateTime.now());
+
+            Duration completionTime = Duration.between(taskToComplete.getStartTime(), taskToComplete.getEndTime());
+
+            taskRepository.save(taskToComplete);
+
+            return completedTaskDurationResponseMap(taskToComplete, completionTime);
+        } else {
+            throw new TaskAlreadyCompletedException("Task is already marked as completed.");
+        }
     }
 
 

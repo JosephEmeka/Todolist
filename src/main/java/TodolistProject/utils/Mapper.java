@@ -6,6 +6,8 @@ import TodolistProject.data.model.User;
 import TodolistProject.dtos_requests.*;
 import TodolistProject.dtos_response.*;
 
+import java.time.Duration;
+
 
 public class Mapper {
     public static User RegisterRequestMap(RegisterRequest newUserRegistrationRequest) {
@@ -59,6 +61,7 @@ public class Mapper {
         task.setTitle(newTaskRequest.getTitle());
         task.setDescription(newTaskRequest.getDescription());
         task.setDueDateTime(newTaskRequest.getDueDate());
+        task.setStartTime(newTaskRequest.getStartTime());
         return task;
     }
 
@@ -66,18 +69,17 @@ public class Mapper {
         AddTaskResponse addTaskResponse = new AddTaskResponse();
         addTaskResponse.setTitle(task.getTitle());
         addTaskResponse.setDescription(task.getDescription());
+        addTaskResponse.setStartTime(task.getStartTime());
         addTaskResponse.setDueDate(task.getDueDateTime());
         return addTaskResponse;
     }
 
-    public static Task editTaskRequestMap(EditTaskRequest request) {
-        Task task = new Task();
-            task.setTitle(request.getTitle());
-            task.setDescription(request.getDescription());
-            task.setDueDateTime(request.getDueDate());
-            task.setStartTime(request.getStartTime());
-            task.setEndTime(request.getEndTime());
-        return task;
+    public static Task editTaskRequestMap(EditTaskRequest request, Task existingTask) {
+        existingTask.setTitle(request.getTitle());
+        existingTask.setDescription(request.getDescription());
+        existingTask.setDueDateTime(request.getDueDate());
+        existingTask.setStartTime(request.getStartTime());
+        return existingTask;
     }
 
     public static EditTaskResponse editTaskResponseMap(Task task) {
@@ -97,9 +99,11 @@ public class Mapper {
     }
 
     public static DeleteTaskResponse deleteTaskResponseMap(Task task){
-
-
-        return null;
+        DeleteTaskResponse response = new DeleteTaskResponse();
+        response.setTaskId(task.getTaskId());
+        response.setAuthor(task.getAuthor());
+        response.setTitle(task.getTitle());
+        return response;
     }
 
     public static PendingTaskResponse pendingTaskResponseMap(Task task) {
@@ -115,6 +119,17 @@ public class Mapper {
         response.setTaskId(task.getTaskId());
         response.setTitle(task.getTitle());
         response.setDescription(task.getDescription());
+        return response;
+    }
+
+    public static CompletedTaskResponse completedTaskDurationResponseMap(Task task, Duration completionTime) {
+        CompletedTaskResponse response = new CompletedTaskResponse();
+        response.setTaskId(task.getTaskId());
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        response.setStartTime(task.getStartTime());
+        response.setEndTime(task.getEndTime());
+        response.setTaskCompletionDuration(completionTime);
         return response;
     }
 }

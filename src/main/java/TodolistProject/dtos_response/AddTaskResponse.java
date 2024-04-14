@@ -8,5 +8,6 @@ import java.time.LocalDateTime;
 public class AddTaskResponse {
     private String title;
     private String description;
+    private LocalDateTime startTime;
     private LocalDateTime dueDate;
 }
