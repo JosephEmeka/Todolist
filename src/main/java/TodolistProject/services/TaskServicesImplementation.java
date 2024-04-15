@@ -30,15 +30,19 @@ public class TaskServicesImplementation implements TaskServices {
 
     @Override
     public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
+        if(taskRepository.findByAuthorAndTitle(newTaskRequest.getAuthor(), newTaskRequest.getTitle()).isEmpty()) {
             Task newTask = addTaskRequestMap(newTaskRequest);
             taskRepository.save(newTask);
             return addTaskResponseMap(newTask);
         }
+        throw new TaskAlreadyAddedException("Task already exists");
+    }
 
+    @Override
     public List<Task> getAllTasks() { return taskRepository.findAll(); }
 
     @Override
-    public EditTaskResponse editTask(EditTaskRequest editTaskRequest) throws TaskAlreadyAddedException {
+    public EditTaskResponse editTask(EditTaskRequest editTaskRequest)  {
         Task existingTask = taskRepository.findByAuthorAndTitle(editTaskRequest.getAuthor().toLowerCase().trim(), editTaskRequest.getTitle().toLowerCase().trim())
                 .orElseThrow(() -> new TaskNotFoundException("Task not found"));
 
@@ -73,7 +77,7 @@ public void  validateTaskRequest(Task task) {
         throw new NoSuchElementException("task does not exist in database");
     }
 
-
+@Override
     public List<PendingTaskResponse> getPendingTasks(PendingTaskRequest pendingTaskRequest) {
         Optional<List<Task>> pendingTasks = taskRepository.findByStatusAndAuthor(pendingTaskRequest.getStatus(), pendingTaskRequest.getAuthor().toLowerCase().trim());
         if (pendingTasks.isPresent()) {
@@ -83,7 +87,7 @@ public void  validateTaskRequest(Task task) {
         }
         throw new NoPendingTaskException("No Pending Task for this " + pendingTaskRequest.getAuthor());
     }
-
+@Override
     public CompletedTaskResponse markTaskAsCompleted(MarkTaskCompletedRequest markTaskCompletedRequest) {
 
         Task taskToComplete = taskRepository.findByAuthorAndTitle(markTaskCompletedRequest.getAuthor().toLowerCase().trim(), markTaskCompletedRequest.getTitle().toLowerCase().trim())
@@ -103,7 +107,7 @@ public void  validateTaskRequest(Task task) {
         }
     }
 
-
+@Override
     public List<CompletedTaskResponse> getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest) {
         Optional<List<Task>> completedTasks = taskRepository.findByStatusAndAuthor(completedTaskRequest.getStatus(), completedTaskRequest.getAuthor().toLowerCase().trim());
 

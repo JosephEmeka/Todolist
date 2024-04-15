@@ -2,6 +2,8 @@ package TodolistProject.dtos_requests;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class RegisterRequest {
     private String firstName;
@@ -9,5 +11,6 @@ public class RegisterRequest {
     private String userName;
     private String password;
     private String email;
+    private LocalDateTime dateRegistered = LocalDateTime.now();
 
 }

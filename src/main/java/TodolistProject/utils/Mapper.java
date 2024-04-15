@@ -17,6 +17,7 @@ public class Mapper {
         user.setLastName(newUserRegistrationRequest.getLastName());
         user.setPassword(newUserRegistrationRequest.getPassword());
         user.setEmail(newUserRegistrationRequest.getEmail());
+        user.setDateRegistered(newUserRegistrationRequest.getDateRegistered());
         return user;
     }
 
@@ -24,6 +25,7 @@ public class Mapper {
         RegisterResponse response = new RegisterResponse();
         response.setId(user.getUserId());
         response.setUserName(user.getUserName());
+        response.setDateRegistered(user.getDateRegistered());
         return response;
     }
 
@@ -59,6 +61,7 @@ public class Mapper {
     public  static Task addTaskRequestMap(RegisterTaskRequest newTaskRequest) {
         Task task = new Task();
         task.setTitle(newTaskRequest.getTitle());
+        task.setAuthor(newTaskRequest.getAuthor());
         task.setDescription(newTaskRequest.getDescription());
         task.setDueDateTime(newTaskRequest.getDueDate());
         task.setStartTime(newTaskRequest.getStartTime());

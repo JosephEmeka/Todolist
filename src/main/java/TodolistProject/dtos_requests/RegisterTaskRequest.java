@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
 public class RegisterTaskRequest {
     private String title;
     private String description;
-    private LocalDateTime startTime = LocalDateTime.now();
+    private String author;
+    private LocalDateTime startTime;
     private LocalDateTime dueDate;
     private String username;
 }

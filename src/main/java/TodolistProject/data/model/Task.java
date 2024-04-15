@@ -19,6 +19,4 @@ public class Task {
     private LocalDateTime endTime;
     private LocalDateTime dueDateTime;
     private PendingStatus status = PendingStatus.PENDING;
-
-
 }

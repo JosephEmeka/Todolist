@@ -39,8 +39,18 @@ public class UserServicesImplementation implements UserServices{
 
     @Override
     public LoginResponse loginUser(LoginRequest loginRequest) {
-        User user = userLoginMap(loginRequest);
-        validateLoginRequest(loginRequest, user);
+//        User user = u(loginRequest);
+        Optional<User> existingUser = userRepository.findByUserName(loginRequest.getUsername());
+        if (existingUser.isEmpty()) {
+            throw new DoubleUserRegistrationException("User with username " + loginRequest.getUsername() + " not found");
+        }
+//        validateLoginRequest(loginRequest, user);
+        User user = existingUser.get();
+        if (!user.getPassword().equals(loginRequest.getPassword())) {
+            throw new WrongPasswordException("Invalid password");
+        }
+        user.setIsLoggedIn(true);
+        userRepository.save(user);
         return userLoginResponseMap(user);
     }
 
@@ -89,6 +99,8 @@ public class UserServicesImplementation implements UserServices{
             throw new DoubleUserRegistrationException("User with username " + user.getUserName() + " already exists.");
         }
     }
+
+    @Override
     public LogoutResponse logoutUser(LogOutRequest newLogOutRequest) {
         User user = userLogOutMap(newLogOutRequest);
         validateLogoutRequest(newLogOutRequest, user);

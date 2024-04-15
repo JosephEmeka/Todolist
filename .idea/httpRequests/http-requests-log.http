@@ -1,3 +1,617 @@
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T045201.400.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T045129.400.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T045021.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T045015.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T045008.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T041732.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T041145.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T041141.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T041117.201.json
+
+###
+
+PATCH http://localhost:9191/todolist/editTask
+Content-Type: application/json
+Content-Length: 182
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "author": "Joseph",
+  "title": "finish Api documentation",
+  "description": "finish documentation now",
+  "startTime": "2024-05-30T18:00:00",
+  "dueDate": "2024-06-30T18:00:00"
+}
+
+<> 2024-04-15T040924.400.json
+
+###
+
+GET http://localhost:9191/todolist/getAllTasks
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-15T040607.200.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 233
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "finish Api documentation",
+  "description": "complete chibuzors documentation and have a good rest",
+  "author": "Joseph",
+  "startTime": "2024-03-20T18:00:00",
+  "dueDate": "2024-05-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T040524.201.json
+
+###
+
+GET http://localhost:9191/todolist/getAllTasks
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-15T033209.200.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 159
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "my story",
+  "description": "semicolon stories",
+  "startTime": "2024-04-20T18:00:00",
+  "dueDate": "2024-04-30T18:00:00",
+  "username": "joey"
+}
+
+<> 2024-04-15T033019.201.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 144
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "my story",
+  "description": "semicolon stories",
+  "startTime": "12/june/2023",
+  "dueDate": "23/may/2024",
+  "username": "joey"
+}
+
+<> 2024-04-15T032527.400.json
+
+###
+
+POST http://localhost:9191/todolist/addTask
+Content-Type: application/json
+Content-Length: 144
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "my story",
+  "description": "semicolon stories",
+  "startTime": "12/june/2023",
+  "dueDate": "23/may/2024",
+  "username": "joey"
+}
+
+<> 2024-04-15T025205.400.json
+
+###
+
+PATCH http://localhost:9191/todolist/login
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "joey",
+  "password": "password"
+}
+
+<> 2024-04-15T025009.200.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 132
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "solomonking",
+  "lastName": "ayo",
+  "userName": "solo",
+  "password": "passwordyy",
+  "email": "solo@gmail.com"
+}
+
+<> 2024-04-15T024954.400.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 132
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "solomonking",
+  "lastName": "ayo",
+  "userName": "solo",
+  "password": "passwordyy",
+  "email": "solo@gmail.com"
+}
+
+<> 2024-04-15T010611.201.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "samking",
+  "lastName": "Olu",
+  "userName": "sammy",
+  "password": "passworded",
+  "email": "sam@gmail.com"
+}
+
+<> 2024-04-15T010535.201.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-15T010459.400.json
+
+###
+
+PATCH http://localhost:9191/todolist/login
+Content-Type: application/json
+Content-Length: 46
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "joey",
+  "password": "pass"
+}
+
+<> 2024-04-14T212147.400.json
+
+###
+
+PATCH http://localhost:9191/todolist/login
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "joey",
+  "password": "password"
+}
+
+<> 2024-04-14T211750.200.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T210817.400.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T210443.201.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T210257.201.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T205503.400.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T205338.201.json
+
+###
+
+PATCH http://localhost:9191/todolist/login
+Content-Type: application/json
+Content-Length: 50
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "joey",
+  "password": "password"
+}
+
+<> 2024-04-14T205317.400.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T204350.400.json
+
+###
+
+GET http://localhost:9191/todolist/getAllTasks
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-14T201439.200.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T200441.201.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T200119.201.json
+
+###
+
+POST http://localhost:9191/todolist/register
+Content-Type: application/json
+Content-Length: 127
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "firstName": "joeking",
+  "lastName": "Onah",
+  "userName": "joey",
+  "password": "password",
+  "email": "joey@gmail.com"
+}
+
+<> 2024-04-14T195501.201.json
+
+###
+
 GET http://localhost:9191/todolist
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
