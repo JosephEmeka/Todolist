@@ -7,6 +7,7 @@ import TodolistProject.dtos_requests.*;
 import TodolistProject.dtos_response.*;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 
 
 public class Mapper {
@@ -17,7 +18,7 @@ public class Mapper {
         user.setLastName(newUserRegistrationRequest.getLastName());
         user.setPassword(newUserRegistrationRequest.getPassword());
         user.setEmail(newUserRegistrationRequest.getEmail());
-        user.setDateRegistered(newUserRegistrationRequest.getDateRegistered());
+        user.setDateRegistered(LocalDateTime.now());
         return user;
     }
 

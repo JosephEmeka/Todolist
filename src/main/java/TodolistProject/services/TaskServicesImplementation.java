@@ -30,7 +30,7 @@ public class TaskServicesImplementation implements TaskServices {
 
     @Override
     public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
-        if(taskRepository.findByAuthorAndTitle(newTaskRequest.getAuthor(), newTaskRequest.getTitle()).isEmpty()) {
+        if(taskRepository.findByAuthorAndTitle(newTaskRequest.getAuthor().toLowerCase().trim(), newTaskRequest.getTitle().toLowerCase().trim()).isEmpty()) {
             Task newTask = addTaskRequestMap(newTaskRequest);
             taskRepository.save(newTask);
             return addTaskResponseMap(newTask);
