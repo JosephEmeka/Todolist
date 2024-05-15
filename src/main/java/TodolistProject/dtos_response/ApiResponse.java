@@ -14,6 +14,5 @@ public class ApiResponse {
         private String userName;
         private String id;
 
-
     }
 }

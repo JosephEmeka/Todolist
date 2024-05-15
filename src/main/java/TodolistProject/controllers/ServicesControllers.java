@@ -4,7 +4,6 @@ package TodolistProject.controllers;
 import TodolistProject.dtos_requests.*;
 import TodolistProject.dtos_response.ApiResponse;
 import TodolistProject.dtos_response.CompletedTaskResponse;
-import TodolistProject.exceptions.TaskAlreadyAddedException;
 import TodolistProject.exceptions.TaskAlreadyCompletedException;
 import TodolistProject.exceptions.TaskNotFoundException;
 import TodolistProject.services.TaskServices;
@@ -12,10 +11,14 @@ import TodolistProject.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.lang.model.util.Elements;
+
 import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/todolist")
+@CrossOrigin(origins = "*")
 public class ServicesControllers {
     @Autowired
     private UserServices userServices;
@@ -69,9 +72,9 @@ public class ServicesControllers {
     }
 
     @GetMapping("/getAllTasks")
-    public ResponseEntity<?> getAllTasks() {
+    public ResponseEntity<?> getAllTasks(@RequestBody GetAllTaskRequest getAllTaskRequest) {
         try {
-            var result = taskServices.getAllTasks();
+            var result = taskServices.getAllTasks(getAllTaskRequest);
             return new ResponseEntity<>(result, OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);

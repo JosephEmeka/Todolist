@@ -2,7 +2,9 @@ package TodolistProject.data.model;
 
 import TodolistProject.enums.PendingStatus;
 import lombok.Data;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -17,6 +19,8 @@ public class Task {
     private String author;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    private LocalDateTime completedTime;
     private LocalDateTime dueDateTime;
     private PendingStatus status = PendingStatus.PENDING;
+    private String username;
 }

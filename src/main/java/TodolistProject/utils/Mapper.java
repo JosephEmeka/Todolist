@@ -5,9 +5,9 @@ import TodolistProject.data.model.Task;
 import TodolistProject.data.model.User;
 import TodolistProject.dtos_requests.*;
 import TodolistProject.dtos_response.*;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class Mapper {
@@ -69,6 +69,13 @@ public class Mapper {
         return task;
     }
 
+    public static GetAllTaskResponse getAllTaskResponseMap(List<Task> tasks) {
+        GetAllTaskResponse response = new GetAllTaskResponse();
+        response.setUsername(tasks.get(0).getUsername());
+        response.setTasks(tasks);
+        return response;
+    }
+
     public static AddTaskResponse addTaskResponseMap(Task task){
         AddTaskResponse addTaskResponse = new AddTaskResponse();
         addTaskResponse.setTitle(task.getTitle());
@@ -99,6 +106,7 @@ public class Mapper {
         Task task = new Task();
             task.setAuthor(deleteTaskRequest.getAuthor());
             task.setTitle(deleteTaskRequest.getTitle());
+
         return task;
     }
 
@@ -126,16 +134,17 @@ public class Mapper {
         return response;
     }
 
-    public static CompletedTaskResponse completedTaskDurationResponseMap(Task task, Duration completionTime) {
+    public static CompletedTaskResponse completedTaskDurationResponseMap(Task task) {
         CompletedTaskResponse response = new CompletedTaskResponse();
         response.setTaskId(task.getTaskId());
         response.setTitle(task.getTitle());
         response.setDescription(task.getDescription());
         response.setStartTime(task.getStartTime());
         response.setEndTime(task.getEndTime());
-        response.setTaskCompletionDuration(completionTime);
+        response.setTaskCompletionDuration(task.getCompletedTime());
         return response;
     }
+
 }
 
 

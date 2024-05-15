@@ -1,7 +1,9 @@
 package TodolistProject.services;
 
 import TodolistProject.data.model.Task;
+import TodolistProject.data.model.User;
 import TodolistProject.data.repository.TaskRepository;
+import TodolistProject.data.repository.UserRepository;
 import TodolistProject.dtos_requests.*;
 import TodolistProject.dtos_response.*;
 import TodolistProject.enums.PendingStatus;
@@ -10,8 +12,8 @@ import TodolistProject.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -21,29 +23,66 @@ import static TodolistProject.utils.Mapper.*;
 
 @Service
 public class TaskServicesImplementation implements TaskServices {
+    private final UserRepository userRepository;
     private final TaskRepository taskRepository;
+
     @Autowired
-    public TaskServicesImplementation(TaskRepository taskRepository) {
+    public TaskServicesImplementation(UserRepository userRepository, TaskRepository taskRepository) {
+        this.userRepository = userRepository;
         this.taskRepository = taskRepository;
     }
 
+@Override
+public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
+    if (taskRepository.findByUsernameAndTitle(newTaskRequest.getUsername().toLowerCase().trim(), newTaskRequest.getTitle().toLowerCase().trim()).isEmpty()) {
+        Optional<User> foundOptionalUser = userRepository.findByUserName(newTaskRequest.getUsername());
+
+        if (foundOptionalUser.isPresent()) {
+            User user = foundOptionalUser.get();
+            if (user.getIsLoggedIn()) {
+                Task newTask = addTaskRequestMap(newTaskRequest);
+                newTask.setUsername(user.getUserName());
+
+                if (user.getTasks() == null) {
+                    user.setTasks(new ArrayList<>());
+                }
+
+                user.getTasks().add(newTask);
+                taskRepository.save(newTask);
+                userRepository.save(user);
+
+                return addTaskResponseMap(newTask);
+            } else {
+                throw new UserNotLoggedInException("Login is required to create task");
+            }
+        } else {
+            throw new UserNotFoundException("User not found");
+        }
+    }
+    throw new TaskAlreadyAddedException("Task already exists");
+}
+
 
     @Override
-    public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
-        if(taskRepository.findByAuthorAndTitle(newTaskRequest.getAuthor().toLowerCase().trim(), newTaskRequest.getTitle().toLowerCase().trim()).isEmpty()) {
-            Task newTask = addTaskRequestMap(newTaskRequest);
-            taskRepository.save(newTask);
-            return addTaskResponseMap(newTask);
+    public GetAllTaskResponse getAllTasks(GetAllTaskRequest getAllTaskRequest) {
+        Optional<User> foundOptionalUser = userRepository.findByUserName(getAllTaskRequest.getUsername());
+        if (foundOptionalUser.isPresent()) {
+            User user = foundOptionalUser.get();
+            if (user.getIsLoggedIn()) {
+                return getAllTaskResponseMap(taskRepository.findByUsername(getAllTaskRequest.getUsername().toLowerCase().trim()).get());
+            } else {
+                throw new UserNotLoggedInException("User is not logged in");
+            }
+        } else {
+            throw new UserNotFoundException("User not found");
         }
-        throw new TaskAlreadyAddedException("Task already exists");
     }
 
-    @Override
-    public List<Task> getAllTasks() { return taskRepository.findAll(); }
+
 
     @Override
     public EditTaskResponse editTask(EditTaskRequest editTaskRequest)  {
-        Task existingTask = taskRepository.findByAuthorAndTitle(editTaskRequest.getAuthor().toLowerCase().trim(), editTaskRequest.getTitle().toLowerCase().trim())
+        Task existingTask = taskRepository.findByUsernameAndTitle(editTaskRequest.getUsername().toLowerCase().trim(), editTaskRequest.getTitle().toLowerCase().trim())
                 .orElseThrow(() -> new TaskNotFoundException("Task not found"));
 
         Task updatedTask = editTaskRequestMap(editTaskRequest, existingTask);
@@ -65,61 +104,112 @@ public void  validateTaskRequest(Task task) {
 }
 
 
+
+
     @Override
     public DeleteTaskResponse deleteTask(DeleteTaskRequest deleteTaskRequest) {
-        Task taskToDelete = deleteTaskRequestMap(deleteTaskRequest);
-        if(taskRepository.findByAuthorAndTitle(deleteTaskRequest.getAuthor(), deleteTaskRequest.getTitle()).isPresent()) {
-            String foundTaskToBeDeletedId = taskRepository.findByAuthorAndTitle(deleteTaskRequest.getAuthor(), deleteTaskRequest.getTitle()).get().getTaskId();
-            taskRepository.deleteById(foundTaskToBeDeletedId);
-            return deleteTaskResponseMap(taskToDelete);
-        }
+        Optional<User> userOptional = userRepository.findByUserName(deleteTaskRequest.getUsername());
 
-        throw new NoSuchElementException("task does not exist in database");
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            if (user.getIsLoggedIn()) {
+                String author = deleteTaskRequest.getAuthor().toLowerCase().trim();
+                String title = deleteTaskRequest.getTitle().toLowerCase().trim();
+
+                List<Task> tasks = user.getTasks();
+
+                if (tasks != null) {
+                    Optional<Task> taskToDelete = tasks.stream()
+                            .filter(task -> task.getAuthor().equalsIgnoreCase(author) && task.getTitle().equalsIgnoreCase(title))
+                            .findFirst();
+
+                    if (taskToDelete.isPresent()) {
+                        tasks.remove(taskToDelete.get());
+                        if(taskRepository.findByUsername(taskToDelete.get().getUsername()).isPresent()){
+                            taskRepository.delete(taskToDelete.get());
+                        }
+                        userRepository.save(user);
+                        return deleteTaskResponseMap(taskToDelete.get());
+                    } else {
+                        throw new NoSuchElementException("Task not found in user's list");
+                    }
+                } else {
+                    throw new IllegalStateException("User's tasks list is null");
+                }
+            } else {
+                throw new UserNotLoggedInException("Login is required to delete task");
+            }
+        } else {
+            throw new UserNotFoundException("User not found");
+        }
     }
 
 @Override
     public List<PendingTaskResponse> getPendingTasks(PendingTaskRequest pendingTaskRequest) {
-        Optional<List<Task>> pendingTasks = taskRepository.findByStatusAndAuthor(pendingTaskRequest.getStatus(), pendingTaskRequest.getAuthor().toLowerCase().trim());
-        if (pendingTasks.isPresent()) {
-            return pendingTasks.get().stream()
-                    .map(Mapper::pendingTaskResponseMap)
-                    .collect(Collectors.toList());
-        }
-        throw new NoPendingTaskException("No Pending Task for this " + pendingTaskRequest.getAuthor());
-    }
-@Override
-    public CompletedTaskResponse markTaskAsCompleted(MarkTaskCompletedRequest markTaskCompletedRequest) {
+        Optional<User> userOptional = userRepository.findByUserName(pendingTaskRequest.getUsername().toLowerCase().trim());
+        List<PendingTaskResponse> pendingTaskResponses = new ArrayList<>();
 
-        Task taskToComplete = taskRepository.findByAuthorAndTitle(markTaskCompletedRequest.getAuthor().toLowerCase().trim(), markTaskCompletedRequest.getTitle().toLowerCase().trim())
-                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
 
-        if (!taskToComplete.getStatus().equals(PendingStatus.COMPLETED)) {
-            taskToComplete.setStatus(PendingStatus.COMPLETED);
-            taskToComplete.setEndTime(LocalDateTime.now());
+            if (user.getIsLoggedIn()) {
+                List<Task> tasks = user.getTasks();
+                List<Task> pendingTasks = tasks.stream()
+                        .filter(task -> task.getStatus().equals(pendingTaskRequest.getStatus()) && task.getAuthor().equalsIgnoreCase(pendingTaskRequest.getUsername()))
+                        .collect(Collectors.toList());
 
-            Duration completionTime = Duration.between(taskToComplete.getStartTime(), taskToComplete.getEndTime());
-
-            taskRepository.save(taskToComplete);
-
-            return completedTaskDurationResponseMap(taskToComplete, completionTime);
+                if (!pendingTasks.isEmpty()) {
+                    pendingTaskResponses = pendingTasks.stream()
+                            .map(Mapper::pendingTaskResponseMap)
+                            .collect(Collectors.toList());
+                } else {
+                    throw new NoPendingTaskException("No Pending Task for this user");
+                }
+            } else {
+                throw new UserNotLoggedInException("User is not logged in");
+            }
         } else {
-            throw new TaskAlreadyCompletedException("Task is already marked as completed.");
-        }
-    }
-
-@Override
-    public List<CompletedTaskResponse> getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest) {
-        Optional<List<Task>> completedTasks = taskRepository.findByStatusAndAuthor(completedTaskRequest.getStatus(), completedTaskRequest.getAuthor().toLowerCase().trim());
-
-        if (completedTasks.isPresent()) {
-            return completedTasks.get().stream()
-                    .map(Mapper::completedTaskResponseMap)
-                    .collect(Collectors.toList());
+            throw new UserNotFoundException("User not found");
         }
 
-        throw new NoCompletedTaskException("No Completed Tasks found.");
+        return pendingTaskResponses;
+    }
+    @Override
+    public CompletedTaskResponse markTaskAsCompleted (MarkTaskCompletedRequest markTaskCompletedRequest){
+        Optional<User> userOptional = userRepository.findByUserName(markTaskCompletedRequest.getUsername().toLowerCase().trim());
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            if (user.getIsLoggedIn()) {
+                Task taskToComplete = taskRepository.findByUsernameAndTitle(markTaskCompletedRequest.getUsername().toLowerCase().trim(), markTaskCompletedRequest.getTitle().toLowerCase().trim())
+                        .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+
+                if (!taskToComplete.getStatus().equals(PendingStatus.COMPLETED)) {
+                    taskToComplete.setStatus(PendingStatus.COMPLETED);
+                    taskToComplete.setEndTime(LocalDateTime.now());
+
+
+                    taskRepository.save(taskToComplete);
+                    return completedTaskDurationResponseMap(taskToComplete);
+                } else {
+                    throw new TaskAlreadyCompletedException("Task is already marked as completed.");
+                }
+            }
+            else throw new UserNotLoggedInException("User is not logged in");
+        }
+        else throw new UserNotFoundException("User is not found");
     }
 
-}
+            @Override
+            public List<CompletedTaskResponse> getCompletedTasksWithDateTime (CompletedTaskRequest completedTaskRequest)
+            {
+                Optional<List<Task>> completedTasks = taskRepository.findByStatusAndAuthor(completedTaskRequest.getStatus(), completedTaskRequest.getAuthor().toLowerCase().trim());
+                if (completedTasks.isPresent()) {
+                    return completedTasks.get().stream().map(Mapper::completedTaskResponseMap).collect(Collectors.toList());
+                }
+                throw new NoCompletedTaskFoundException("No Completed Tasks found.");
+            }
 
-
+        }

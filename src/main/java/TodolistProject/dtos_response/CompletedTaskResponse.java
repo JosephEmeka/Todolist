@@ -14,5 +14,5 @@ public class CompletedTaskResponse {
     private LocalDateTime startTime;
     private LocalDateTime dueDate;
     private LocalDateTime endTime;
-    private Duration taskCompletionDuration;
+    private LocalDateTime taskCompletionDuration;
 }

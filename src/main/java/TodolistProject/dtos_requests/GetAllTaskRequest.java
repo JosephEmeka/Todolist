@@ -3,9 +3,6 @@ package TodolistProject.dtos_requests;
 import lombok.Data;
 
 @Data
-public class DeleteTaskRequest {
-    private String title;
-    private String author;
+public class GetAllTaskRequest {
     private String username;
 }
-

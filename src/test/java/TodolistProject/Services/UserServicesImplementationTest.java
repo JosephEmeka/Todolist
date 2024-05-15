@@ -1,17 +1,19 @@
 package TodolistProject.Services;
 
 import TodolistProject.data.model.User;
+import TodolistProject.data.repository.TaskRepository;
 import TodolistProject.data.repository.UserRepository;
-import TodolistProject.dtos_requests.LogOutRequest;
-import TodolistProject.dtos_requests.LoginRequest;
-import TodolistProject.dtos_requests.RegisterRequest;
+import TodolistProject.dtos_requests.*;
 import TodolistProject.exceptions.*;
+import TodolistProject.services.TaskServicesImplementation;
 import TodolistProject.services.UserServicesImplementation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -20,11 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UserServicesImplementationTest {
 @Autowired
-    private UserRepository userRepository;
+private UserRepository userRepository;
+@Autowired
+private TaskRepository taskRepository;
 
     @BeforeEach
     void setUp() {
         userRepository.deleteAll();
+        taskRepository.deleteAll();
     }
     @Test
     void testThatUserCanCreateAccount(){
@@ -190,14 +195,7 @@ class UserServicesImplementationTest {
     @Test
     void testUserCannotBeLoggedInWithWrongPassword(){
         userRepository.deleteAll();
-        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
-        RegisterRequest newUserRegistrationRequest = new RegisterRequest();
-        newUserRegistrationRequest.setFirstName("Johnny");
-        newUserRegistrationRequest.setLastName("Joe");
-        newUserRegistrationRequest.setUserName("google-man");
-        newUserRegistrationRequest.setEmail("google-man@gmail.com");
-        newUserRegistrationRequest.setPassword("PASSWORD");
-        userServicesImplementation.registerUser(newUserRegistrationRequest);
+        UserServicesImplementation userServicesImplementation = getServicesImplementation();
 
         LoginRequest newLoginRequest = new LoginRequest();
         newLoginRequest.setUsername("google-man");
@@ -207,10 +205,8 @@ class UserServicesImplementationTest {
         assertThrows(WrongPasswordException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
     }
 
-    @Test
-    void testUserCannotBeLoggedInWithEmptyUserName(){
-        userRepository.deleteAll();
-        var userServicesImplementation = new UserServicesImplementation(userRepository);
+    private UserServicesImplementation getServicesImplementation() {
+        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
         newUserRegistrationRequest.setFirstName("Johnny");
         newUserRegistrationRequest.setLastName("Joe");
@@ -218,18 +214,23 @@ class UserServicesImplementationTest {
         newUserRegistrationRequest.setEmail("google-man@gmail.com");
         newUserRegistrationRequest.setPassword("PASSWORD");
         userServicesImplementation.registerUser(newUserRegistrationRequest);
+        return userServicesImplementation;
+    }
+
+    @Test
+    void testUserCannotBeLoggedInWithEmptyUserName(){
+        userRepository.deleteAll();
+        var userServicesImplementation = getUserServicesImplementation();
 
         LoginRequest newLoginRequest = new LoginRequest();
         newLoginRequest.setUsername("");
         newLoginRequest.setPassword("PASSWORD");
         Optional<User> findUser = userRepository.findByUserName("google-man");
         assertTrue(findUser.isPresent());
-        assertThrows(EmptyUserNameLoginException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
+        assertThrows(NoSuchElementException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
     }
 
-    @Test
-    void testUserCannotBeLoggedInWithWhiteSpaceUserName(){
-        userRepository.deleteAll();
+    private UserServicesImplementation getUserServicesImplementation() {
         var userServicesImplementation = new UserServicesImplementation(userRepository);
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
         newUserRegistrationRequest.setFirstName("Johnny");
@@ -238,53 +239,46 @@ class UserServicesImplementationTest {
         newUserRegistrationRequest.setEmail("google-man@gmail.com");
         newUserRegistrationRequest.setPassword("PASSWORD");
         userServicesImplementation.registerUser(newUserRegistrationRequest);
+        return userServicesImplementation;
+    }
+
+    @Test
+    void testUserCannotBeLoggedInWithWhiteSpaceUserName(){
+        userRepository.deleteAll();
+        var userServicesImplementation = getUserServicesImplementation();
 
         LoginRequest newLoginRequest = new LoginRequest();
         newLoginRequest.setUsername(" ");
         newLoginRequest.setPassword("PASSWORD");
         Optional<User> findUser = userRepository.findByUserName("google-man");
         assertTrue(findUser.isPresent());
-        assertThrows(WhiteSpaceException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
+        assertThrows(NoSuchElementException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
     }
 
     @Test
     void testUserCanBeLoggedInWithEmptyPassword(){
         userRepository.deleteAll();
-        var userServicesImplementation = new UserServicesImplementation(userRepository);
-        RegisterRequest newUserRegistrationRequest = new RegisterRequest();
-        newUserRegistrationRequest.setFirstName("Johnny");
-        newUserRegistrationRequest.setLastName("Joe");
-        newUserRegistrationRequest.setUserName("google-man");
-        newUserRegistrationRequest.setEmail("google-man@gmail.com");
-        newUserRegistrationRequest.setPassword("PASSWORD");
-        userServicesImplementation.registerUser(newUserRegistrationRequest);
+        var userServicesImplementation = getUserServicesImplementation();
 
         LoginRequest newLoginRequest = new LoginRequest();
         newLoginRequest.setUsername("google-man");
         newLoginRequest.setPassword("");
         Optional<User> findUser = userRepository.findByUserName("google-man");
         assertTrue(findUser.isPresent());
-        assertThrows(EmptyPasswordLoginException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
+        assertThrows(WrongPasswordException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
     }
 
     @Test
     void testUserCannotBeLoggedInWithWhiteSpacePassword(){
         userRepository.deleteAll();
-        var userServicesImplementation = new UserServicesImplementation(userRepository);
-        RegisterRequest newUserRegistrationRequest = new RegisterRequest();
-        newUserRegistrationRequest.setFirstName("Johnny");
-        newUserRegistrationRequest.setLastName("Joe");
-        newUserRegistrationRequest.setUserName("google-man");
-        newUserRegistrationRequest.setEmail("google-man@gmail.com");
-        newUserRegistrationRequest.setPassword("PASSWORD");
-        userServicesImplementation.registerUser(newUserRegistrationRequest);
+        var userServicesImplementation = getUserServicesImplementation();
 
         LoginRequest newLoginRequest = new LoginRequest();
         newLoginRequest.setUsername("google-man");
         newLoginRequest.setPassword(" ");
         Optional<User> findUser = userRepository.findByUserName("google-man");
         assertTrue(findUser.isPresent());
-        assertThrows(WhiteSpaceException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
+        assertThrows(WrongPasswordException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
     }
 
     @Test
@@ -316,32 +310,118 @@ class UserServicesImplementationTest {
     }
 
     @Test
-    void testUserCanCreateTask(){
+    void testUserCanBeRegisteredLoggedIn_AndUserCanCreateTask(){
+        LoginRequest newLoginRequest = new LoginRequest();
+        newLoginRequest.setUsername("google-man");
+        newLoginRequest.setPassword("PASSWORD");
+        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
+        Optional<User> findUser = userRepository.findByUserName("google-man");
+        assertFalse(findUser.isPresent());
+        assertThrows(NoSuchElementException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
         RegisterRequest newUserRegistrationRequest = new RegisterRequest();
         newUserRegistrationRequest.setFirstName("Johnny");
         newUserRegistrationRequest.setLastName("Joe");
         newUserRegistrationRequest.setUserName("google-man");
         newUserRegistrationRequest.setEmail("google-man@gmail.com");
-        newUserRegistrationRequest.setPassword("passworded");
-        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
+        newUserRegistrationRequest.setPassword("PASSWORD");
+
         userServicesImplementation.registerUser(newUserRegistrationRequest);
         assertEquals(1, userRepository.count());
-        CreateTaskRequest createTaskRequest = new CreateTaskRequest();
+        userServicesImplementation.loginUser(newLoginRequest);
+        assertTrue(userRepository.findByUserName("google-man").get().getIsLoggedIn());
 
-
+        RegisterTaskRequest newTaskRequest = new RegisterTaskRequest();
+        newTaskRequest.setTitle("New Task");
+        newTaskRequest.setUsername("google-man");
+        newTaskRequest.setAuthor("joe");
+        newTaskRequest.setDescription("Semicolon Task");
+        LocalDateTime dueDateTime = LocalDateTime.of(2025, 1, 1, 12, 0);
+        newTaskRequest.setStartTime(LocalDateTime.now());
+        newTaskRequest.setDueDate(Timestamp.valueOf(dueDateTime).toLocalDateTime());
+        TaskServicesImplementation newTaskService = new TaskServicesImplementation(userRepository, taskRepository);
+        newTaskService.addTask(newTaskRequest);
+        assertEquals(1, taskRepository.count());
     }
 
+
     @Test
-    void test_UserCannotCreateTaskWithoutLogin(){
+    void testUserCanDeleteTask(){
+        LoginRequest newLoginRequest = new LoginRequest();
+        newLoginRequest.setUsername("google-man");
+        newLoginRequest.setPassword("PASSWORD");
+        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
+        Optional<User> findUser = userRepository.findByUserName("google-man");
+        assertFalse(findUser.isPresent());
+        assertThrows(NoSuchElementException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
+        RegisterRequest newUserRegistrationRequest = new RegisterRequest();
+        newUserRegistrationRequest.setFirstName("Johnny");
+        newUserRegistrationRequest.setLastName("Joe");
+        newUserRegistrationRequest.setUserName("google-man");
+        newUserRegistrationRequest.setEmail("google-man@gmail.com");
+        newUserRegistrationRequest.setPassword("PASSWORD");
 
+        userServicesImplementation.registerUser(newUserRegistrationRequest);
+        assertEquals(1, userRepository.count());
+        userServicesImplementation.loginUser(newLoginRequest);
+        assertTrue(userRepository.findByUserName("google-man").get().getIsLoggedIn());
 
+        RegisterTaskRequest newTaskRequest = new RegisterTaskRequest();
+        newTaskRequest.setTitle("New Task");
+        newTaskRequest.setUsername("google-man");
+        newTaskRequest.setAuthor("joe");
+        newTaskRequest.setDescription("Semicolon Task");
+        LocalDateTime dueDateTime = LocalDateTime.of(2025, 1, 1, 12, 0);
+        newTaskRequest.setStartTime(LocalDateTime.now());
+        newTaskRequest.setDueDate(Timestamp.valueOf(dueDateTime).toLocalDateTime());
+        TaskServicesImplementation newTaskService = new TaskServicesImplementation(userRepository, taskRepository);
+        newTaskService.addTask(newTaskRequest);
+        assertEquals(1, taskRepository.count());
+        DeleteTaskRequest newDeleteTaskRequest = new DeleteTaskRequest();
+        newDeleteTaskRequest.setAuthor("joe");
+        newDeleteTaskRequest.setUsername("google-man");
+        newDeleteTaskRequest.setTitle("New Task");
+        newTaskService.deleteTask(newDeleteTaskRequest);
+        assertEquals(0, taskRepository.count());
     }
-
-    @Test
-    void testUserCanDeleteTask(){}
 
     @Test
     void test_UserCannotDeleteTaskWithoutLogin(){
+        LoginRequest newLoginRequest = new LoginRequest();
+        newLoginRequest.setUsername("google-man");
+        newLoginRequest.setPassword("PASSWORD");
+        UserServicesImplementation userServicesImplementation = new UserServicesImplementation(userRepository);
+        Optional<User> findUser = userRepository.findByUserName("google-man");
+        assertFalse(findUser.isPresent());
+        assertThrows(NoSuchElementException.class, ()->userServicesImplementation.loginUser(newLoginRequest));
+        RegisterRequest newUserRegistrationRequest = new RegisterRequest();
+        newUserRegistrationRequest.setFirstName("Johnny");
+        newUserRegistrationRequest.setLastName("Joe");
+        newUserRegistrationRequest.setUserName("google-man");
+        newUserRegistrationRequest.setEmail("google-man@gmail.com");
+        newUserRegistrationRequest.setPassword("PASSWORD");
+
+        userServicesImplementation.registerUser(newUserRegistrationRequest);
+        assertEquals(1, userRepository.count());
+        userServicesImplementation.loginUser(newLoginRequest);
+        assertTrue(userRepository.findByUserName("google-man").get().getIsLoggedIn());
+
+        RegisterTaskRequest newTaskRequest = new RegisterTaskRequest();
+        newTaskRequest.setTitle("New Task");
+        newTaskRequest.setUsername("google-man");
+        newTaskRequest.setAuthor("joe");
+        newTaskRequest.setDescription("Semicolon Task");
+        LocalDateTime dueDateTime = LocalDateTime.of(2025, 1, 1, 12, 0);
+        newTaskRequest.setStartTime(LocalDateTime.now());
+        newTaskRequest.setDueDate(Timestamp.valueOf(dueDateTime).toLocalDateTime());
+        TaskServicesImplementation newTaskService = new TaskServicesImplementation(userRepository, taskRepository);
+        newTaskService.addTask(newTaskRequest);
+        assertEquals(1, taskRepository.count());
+        DeleteTaskRequest newDeleteTaskRequest = new DeleteTaskRequest();
+        newDeleteTaskRequest.setAuthor("joe");
+        newDeleteTaskRequest.setUsername("google-man");
+        newDeleteTaskRequest.setTitle("New Task");
+        newTaskService.deleteTask(newDeleteTaskRequest);
+        assertEquals(0, taskRepository.count());
 
     }
 

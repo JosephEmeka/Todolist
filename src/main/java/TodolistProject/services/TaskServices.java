@@ -7,16 +7,15 @@ import TodolistProject.exceptions.TaskAlreadyAddedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface TaskServices {
      AddTaskResponse addTask(RegisterTaskRequest newTaskRequest);
-    List<Task> getAllTasks();
-
+    GetAllTaskResponse getAllTasks(GetAllTaskRequest newGetTaskRequest);
     EditTaskResponse editTask(EditTaskRequest editTaskRequest) throws TaskAlreadyAddedException;
-
     DeleteTaskResponse deleteTask(DeleteTaskRequest deleteTaskRequest);
     List<PendingTaskResponse> getPendingTasks(PendingTaskRequest pendingTaskRequest);
     CompletedTaskResponse markTaskAsCompleted(MarkTaskCompletedRequest markTaskCompletedRequest);
-    List<CompletedTaskResponse> getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest);
+    CompletedTaskResponse getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest);
 }

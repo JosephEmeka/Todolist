@@ -7,4 +7,5 @@ import lombok.Data;
 public class PendingTaskRequest {
     private PendingStatus status;
     private String author;
+   private String username;
 }

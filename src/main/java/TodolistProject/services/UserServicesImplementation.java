@@ -1,18 +1,16 @@
 package TodolistProject.services;
 
 
+import TodolistProject.data.model.Task;
 import TodolistProject.data.model.User;
 import TodolistProject.data.repository.UserRepository;
-import TodolistProject.dtos_requests.LogOutRequest;
-import TodolistProject.dtos_requests.LoginRequest;
-import TodolistProject.dtos_requests.RegisterRequest;
-import TodolistProject.dtos_response.LoginResponse;
-import TodolistProject.dtos_response.LogoutResponse;
-import TodolistProject.dtos_response.RegisterResponse;
+import TodolistProject.dtos_requests.*;
+import TodolistProject.dtos_response.*;
 import TodolistProject.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +20,8 @@ import static TodolistProject.utils.Mapper.*;
 
 @Service
 public class UserServicesImplementation implements UserServices{
+    @Autowired
+    private TaskServices taskServices;
     private final UserRepository userRepository;
     @Autowired
     public UserServicesImplementation(UserRepository userRepository) {
@@ -39,47 +39,24 @@ public class UserServicesImplementation implements UserServices{
 
     @Override
     public LoginResponse loginUser(LoginRequest loginRequest) {
-
         Optional<User> existingUser = userRepository.findByUserName(loginRequest.getUsername());
         if (existingUser.isEmpty()) {
-            throw new DoubleUserRegistrationException("User with username " + loginRequest.getUsername() + " not found");
+            throw new NoSuchElementException("User with username " + loginRequest.getUsername() + " not found");
         }
 
         User user = existingUser.get();
         if (!user.getPassword().equals(loginRequest.getPassword())) {
             throw new WrongPasswordException("Invalid password");
         }
+        if (user.getIsLoggedIn()) {
+            throw new UserAlreadyLoggedInException("User already logged in");
+        }
         user.setIsLoggedIn(true);
         userRepository.save(user);
         return userLoginResponseMap(user);
     }
 
-    private void validateLoginRequest(LoginRequest loginRequest, User user) {
-        if (loginRequest.getUsername() == null || loginRequest.getUsername().isEmpty()) {
-            throw new EmptyUserNameLoginException("User name cannot be empty.");
-        }
-        if (loginRequest.getPassword() == null || loginRequest.getPassword().isEmpty()) {
-            throw new EmptyPasswordLoginException("Password cannot be empty.");
-        }
-        if (loginRequest.getUsername().equals(" ") || loginRequest.getPassword().equals(" ")) {
-            throw new WhiteSpaceException("User cannot enter white Space");
-        }
-        Optional<User> existingUserOptional = userRepository.findByUserName(user.getUserName());
-        if (existingUserOptional.isPresent()) {
-            User existingUser = existingUserOptional.get();
-            if (!Objects.equals(existingUser.getPassword(), loginRequest.getPassword())) {
-                throw new WrongPasswordException("Account does not exist or Invalid password");
-            }
-            existingUser.setIsLoggedIn(true);
-            userRepository.save(existingUser);
-        }
-        else
-        {
-            throw new NoSuchElementException("User not found");
-        }
 
-
-    }
 
     private void validateUser(User user)  {
         if (user.getUserName() == null || user.getUserName().isEmpty()) {
@@ -108,6 +85,7 @@ public class UserServicesImplementation implements UserServices{
     }
 
 
+
     private void validateLogoutRequest(LogOutRequest logOutRequest, User user) {
         Optional<User> existingUserOptional = userRepository.findByUserName(user.getUserName());
         if (existingUserOptional.isPresent()) {
@@ -120,7 +98,17 @@ public class UserServicesImplementation implements UserServices{
         } else {
             throw new NoSuchElementException("User not found");
         }
+    }
 
+
+    @Override
+    public AddTaskResponse AddTaskToUserRepository(RegisterTaskRequest newTaskRequest) {
+        return taskServices.addTask(newTaskRequest);
+    }
+
+    @Override
+    public GetAllTaskResponse getAllTasksForUser(GetAllTaskRequest  getAllTaskRequest) {
+        return taskServices.getAllTasks(getAllTaskRequest);
     }
 
 }
