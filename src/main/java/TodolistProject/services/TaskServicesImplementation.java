@@ -32,35 +32,35 @@ public class TaskServicesImplementation implements TaskServices {
         this.taskRepository = taskRepository;
     }
 
-@Override
-public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
-    if (taskRepository.findByUsernameAndTitle(newTaskRequest.getUsername().toLowerCase().trim(), newTaskRequest.getTitle().toLowerCase().trim()).isEmpty()) {
-        Optional<User> foundOptionalUser = userRepository.findByUserName(newTaskRequest.getUsername());
+    @Override
+    public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
+        if (taskRepository.findByUsernameAndTitle(newTaskRequest.getUsername().toLowerCase().trim(), newTaskRequest.getTitle().toLowerCase().trim()).isEmpty()) {
+            Optional<User> foundOptionalUser = userRepository.findByUserName(newTaskRequest.getUsername());
 
-        if (foundOptionalUser.isPresent()) {
-            User user = foundOptionalUser.get();
-            if (user.getIsLoggedIn()) {
-                Task newTask = addTaskRequestMap(newTaskRequest);
-                newTask.setUsername(user.getUserName());
+            if (foundOptionalUser.isPresent()) {
+                User user = foundOptionalUser.get();
+                if (user.getIsLoggedIn()) {
+                    Task newTask = addTaskRequestMap(newTaskRequest);
+                    newTask.setUsername(user.getUserName());
 
-                if (user.getTasks() == null) {
-                    user.setTasks(new ArrayList<>());
+                    if (user.getTasks() == null) {
+                        user.setTasks(new ArrayList<>());
+                    }
+
+                    user.getTasks().add(newTask);
+                    taskRepository.save(newTask);
+                    userRepository.save(user);
+
+                    return addTaskResponseMap(newTask);
+                } else {
+                    throw new UserNotLoggedInException("Login is required to create task");
                 }
-
-                user.getTasks().add(newTask);
-                taskRepository.save(newTask);
-                userRepository.save(user);
-
-                return addTaskResponseMap(newTask);
             } else {
-                throw new UserNotLoggedInException("Login is required to create task");
+                throw new UserNotFoundException("User not found");
             }
-        } else {
-            throw new UserNotFoundException("User not found");
         }
+        throw new TaskAlreadyAddedException("Task already exists");
     }
-    throw new TaskAlreadyAddedException("Task already exists");
-}
 
 
     @Override
@@ -79,9 +79,8 @@ public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
     }
 
 
-
     @Override
-    public EditTaskResponse editTask(EditTaskRequest editTaskRequest)  {
+    public EditTaskResponse editTask(EditTaskRequest editTaskRequest) {
         Task existingTask = taskRepository.findByUsernameAndTitle(editTaskRequest.getUsername().toLowerCase().trim(), editTaskRequest.getTitle().toLowerCase().trim())
                 .orElseThrow(() -> new TaskNotFoundException("Task not found"));
 
@@ -94,16 +93,14 @@ public AddTaskResponse addTask(RegisterTaskRequest newTaskRequest) {
     }
 
 
-public void  validateTaskRequest(Task task) {
-    if (task.getTitle() == null || task.getTitle().isEmpty() || task.getAuthor() == null) {
-        throw new EmptyEditTaskEntryException("Task details cannot be empty.");
+    public void validateTaskRequest(Task task) {
+        if (task.getTitle() == null || task.getTitle().isEmpty() || task.getAuthor() == null) {
+            throw new EmptyEditTaskEntryException("Task details cannot be empty.");
+        }
+        if (task.getAuthor().equals(" ") || task.getTitle().equals(" ")) {
+            throw new WhiteSpaceException("Book details cannot contain white space.");
+        }
     }
-    if (task.getAuthor().equals(" ") || task.getTitle().equals(" ")) {
-        throw new WhiteSpaceException("Book details cannot contain white space.");
-    }
-}
-
-
 
 
     @Override
@@ -126,7 +123,7 @@ public void  validateTaskRequest(Task task) {
 
                     if (taskToDelete.isPresent()) {
                         tasks.remove(taskToDelete.get());
-                        if(taskRepository.findByUsername(taskToDelete.get().getUsername()).isPresent()){
+                        if (taskRepository.findByUsername(taskToDelete.get().getUsername()).isPresent()) {
                             taskRepository.delete(taskToDelete.get());
                         }
                         userRepository.save(user);
@@ -145,7 +142,7 @@ public void  validateTaskRequest(Task task) {
         }
     }
 
-@Override
+    @Override
     public List<PendingTaskResponse> getPendingTasks(PendingTaskRequest pendingTaskRequest) {
         Optional<User> userOptional = userRepository.findByUserName(pendingTaskRequest.getUsername().toLowerCase().trim());
         List<PendingTaskResponse> pendingTaskResponses = new ArrayList<>();
@@ -175,41 +172,97 @@ public void  validateTaskRequest(Task task) {
 
         return pendingTaskResponses;
     }
+
     @Override
-    public CompletedTaskResponse markTaskAsCompleted (MarkTaskCompletedRequest markTaskCompletedRequest){
+    public CompletedTaskResponse markTaskAsCompleted(MarkTaskCompletedRequest markTaskCompletedRequest) {
         Optional<User> userOptional = userRepository.findByUserName(markTaskCompletedRequest.getUsername().toLowerCase().trim());
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
 
             if (user.getIsLoggedIn()) {
-                Task taskToComplete = taskRepository.findByUsernameAndTitle(markTaskCompletedRequest.getUsername().toLowerCase().trim(), markTaskCompletedRequest.getTitle().toLowerCase().trim())
-                        .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+                List<Task> tasks = user.getTasks();
+                Optional<Task> taskToCompleteOptional = tasks.stream()
+                        .filter(task -> task.getTitle().equalsIgnoreCase(markTaskCompletedRequest.getTitle()))
+                        .findFirst();
 
-                if (!taskToComplete.getStatus().equals(PendingStatus.COMPLETED)) {
-                    taskToComplete.setStatus(PendingStatus.COMPLETED);
-                    taskToComplete.setEndTime(LocalDateTime.now());
+                if (taskToCompleteOptional.isPresent()) {
+                    Task taskToComplete = taskToCompleteOptional.get();
 
+                    if (!taskToComplete.getStatus().equals(PendingStatus.COMPLETED)) {
+                        taskToComplete.setStatus(PendingStatus.COMPLETED);
+                        taskToComplete.setEndTime(LocalDateTime.now());
 
-                    taskRepository.save(taskToComplete);
-                    return completedTaskDurationResponseMap(taskToComplete);
+                        taskRepository.save(taskToComplete);
+                        return completedTaskDurationResponseMap(taskToComplete);
+                    } else {
+                        throw new TaskAlreadyCompletedException("Task is already marked as completed.");
+                    }
                 } else {
-                    throw new TaskAlreadyCompletedException("Task is already marked as completed.");
+                    throw new TaskNotFoundException("Task not found");
                 }
+            } else {
+                throw new UserNotLoggedInException("User is not logged in");
             }
-            else throw new UserNotLoggedInException("User is not logged in");
-        }
-        else throw new UserNotFoundException("User is not found");
+
+        } else throw new UserNotFoundException("User not found");
     }
 
-            @Override
-            public List<CompletedTaskResponse> getCompletedTasksWithDateTime (CompletedTaskRequest completedTaskRequest)
-            {
-                Optional<List<Task>> completedTasks = taskRepository.findByStatusAndAuthor(completedTaskRequest.getStatus(), completedTaskRequest.getAuthor().toLowerCase().trim());
-                if (completedTasks.isPresent()) {
-                    return completedTasks.get().stream().map(Mapper::completedTaskResponseMap).collect(Collectors.toList());
-                }
-                throw new NoCompletedTaskFoundException("No Completed Tasks found.");
-            }
+    @Override
+    public List<CompletedTaskResponse> getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest) {
+        Optional<User> userOptional = userRepository.findByUserName(completedTaskRequest.getUsername().toLowerCase().trim());
+        List<CompletedTaskResponse> completedTaskResponses = new ArrayList<>();
 
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (user.getIsLoggedIn()) {
+                List<Task> tasks = user.getTasks();
+                List<Task> completedTasks = tasks.stream()
+                        .filter(task -> task.getStatus().equals(completedTaskRequest.getStatus()) && task.getAuthor().equalsIgnoreCase(completedTaskRequest.getUsername()))
+                        .collect(Collectors.toList());
+
+                if (!completedTasks.isEmpty()) {
+                    completedTaskResponses = completedTasks.stream()
+                            .map(Mapper::completedTaskDurationResponseMap)
+                            .collect(Collectors.toList());
+                } else {
+                    throw new NoPendingTaskException("No Pending Task for this user");
+                }
+            } else {
+                throw new UserNotLoggedInException("User is not logged in");
+            }
+        } else {
+            throw new UserNotFoundException("User not found");
         }
+
+        return completedTaskResponses;
+    }
+
+    public SharedTaskResponse shareTask(ShareTaskRequest shareTaskRequest) {
+        Task taskToShare = taskRepository.findByUsernameAndTitle(shareTaskRequest.getCurrentUsername(),shareTaskRequest.getTaskTitle())
+                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+
+        User recipientUser = userRepository.findByUserName(shareTaskRequest.getRecipientUsername())
+                .orElseThrow(() -> new UserNotFoundException("Recipient user not found"));
+
+        recipientUser.getTasks().add(taskToShare);
+        userRepository.save(recipientUser);
+        return sharedTaskResponseMap(recipientUser);
+
+    }
+
+
+    public AssignTaskResponse assignTask(AssignTaskRequest assignTaskRequest) {
+        Task taskToAssign = taskRepository.findByUsernameAndTitle(assignTaskRequest.getCurrentUsername(), assignTaskRequest.getTaskTitle())
+                .orElseThrow(() -> new TaskNotFoundException("Task not found"));
+
+        User assigneeUser = userRepository.findByUserName(assignTaskRequest.getAssigneeUsername())
+                .orElseThrow(() -> new UserNotFoundException("Assignee user not found"));
+
+        assigneeUser.getTasks().add(taskToAssign);
+        userRepository.save(assigneeUser);
+        return assignTaskResponseMapper(assigneeUser);
+    }
+
+
+}

@@ -2,7 +2,6 @@ package TodolistProject.dtos_response;
 
 import lombok.Data;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,5 +13,5 @@ public class CompletedTaskResponse {
     private LocalDateTime startTime;
     private LocalDateTime dueDate;
     private LocalDateTime endTime;
-    private LocalDateTime taskCompletionDuration;
+    private Long taskCompletionDuration;
 }

@@ -125,12 +125,10 @@ public class ServicesControllers {
     @PatchMapping("/markTaskAsCompleted")
     public ResponseEntity<?> markTaskAsCompleted(@RequestBody MarkTaskCompletedRequest markTaskCompletedRequest) {
         try {
-            CompletedTaskResponse response = taskServices.markTaskAsCompleted(markTaskCompletedRequest);
-            return ResponseEntity.ok(response);
-        } catch (TaskNotFoundException e) {
-            return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(false, e.getMessage()));
-        } catch (TaskAlreadyCompletedException e) {
-            return ResponseEntity.status(BAD_REQUEST).body(new ApiResponse(false, e.getMessage()));
+            var result  = taskServices.markTaskAsCompleted(markTaskCompletedRequest);
+            return new ResponseEntity<>(result, OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(false, e.getMessage()), BAD_REQUEST);
         }
     }
 }

@@ -17,5 +17,5 @@ public interface TaskServices {
     DeleteTaskResponse deleteTask(DeleteTaskRequest deleteTaskRequest);
     List<PendingTaskResponse> getPendingTasks(PendingTaskRequest pendingTaskRequest);
     CompletedTaskResponse markTaskAsCompleted(MarkTaskCompletedRequest markTaskCompletedRequest);
-    CompletedTaskResponse getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest);
+    List<CompletedTaskResponse> getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest);
 }

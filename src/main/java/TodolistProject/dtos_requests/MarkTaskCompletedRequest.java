@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class MarkTaskCompletedRequest {
     private String title;
-   private String username;
+    private String username;
 }

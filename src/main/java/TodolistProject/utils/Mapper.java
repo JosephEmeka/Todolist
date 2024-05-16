@@ -126,23 +126,24 @@ public class Mapper {
         return response;
     }
 
-    public static CompletedTaskResponse completedTaskResponseMap(Task task) {
-        CompletedTaskResponse response = new CompletedTaskResponse();
-        response.setTaskId(task.getTaskId());
-        response.setTitle(task.getTitle());
-        response.setDescription(task.getDescription());
-        return response;
+
+   public static CompletedTaskResponse completedTaskDurationResponseMap(Task task) {
+    CompletedTaskResponse response = new CompletedTaskResponse();
+    response.setTaskId(task.getTaskId());
+    response.setTitle(task.getTitle());
+    response.setDescription(task.getDescription());
+    response.setStartTime(task.getStartTime());
+    response.setEndTime(task.getEndTime());
+    Duration duration = Duration.between(task.getStartTime(), task.getEndTime());
+    response.setTaskCompletionDuration(duration.toHours());
+    return response;
     }
 
-    public static CompletedTaskResponse completedTaskDurationResponseMap(Task task) {
-        CompletedTaskResponse response = new CompletedTaskResponse();
-        response.setTaskId(task.getTaskId());
-        response.setTitle(task.getTitle());
-        response.setDescription(task.getDescription());
-        response.setStartTime(task.getStartTime());
-        response.setEndTime(task.getEndTime());
-        response.setTaskCompletionDuration(task.getCompletedTime());
-        return response;
+    public static SharedTaskResponse sharedTaskResponseMap(User recipientUser) {
+        return new SharedTaskResponse();
+    }
+    public static AssignTaskResponse assignTaskResponseMapper(User assigneeUser) {
+        return new AssignTaskResponse();
     }
 
 }

@@ -1,0 +1,6 @@
+{
+  "timestamp": "2024-05-16T04:11:12.819+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "path": "/todolist/markTaskAsCompleted"
+}
