@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public interface TaskServices {
-     AddTaskResponse addTask(RegisterTaskRequest newTaskRequest);
+    AddTaskResponse addTask(RegisterTaskRequest newTaskRequest);
     GetAllTaskResponse getAllTasks(GetAllTaskRequest newGetTaskRequest);
     EditTaskResponse editTask(EditTaskRequest editTaskRequest) throws TaskAlreadyAddedException;
     DeleteTaskResponse deleteTask(DeleteTaskRequest deleteTaskRequest);

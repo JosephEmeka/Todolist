@@ -5,33 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cc54682-2443-4de4-81e2-73761b109b3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/AssignTaskRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/ShareTaskRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/AssignTaskResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/SharedTaskResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T033209.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T040524.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T040607.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T040924.400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T041117.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T041141.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T041145.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T041732.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T045008.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T045015.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T045021.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T045129.400.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T045201.400.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T051640.400.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/controllers/ServicesControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/controllers/ServicesControllers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/CompletedTaskRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/CompletedTaskRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/EditTaskRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/EditTaskRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/MarkTaskCompletedRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/MarkTaskCompletedRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/PendingTaskRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_requests/PendingTaskRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/CompletedTaskResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/dtos_response/CompletedTaskResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServicesImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServicesImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/utils/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/utils/Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +73,7 @@
     "HTTP Request.generated-requests | #39.executor": "Run",
     "HTTP Request.generated-requests | #40.executor": "Run",
     "HTTP Request.generated-requests | #41.executor": "Run",
+    "HTTP Request.generated-requests | #46.executor": "Run",
     "JUnit.MainTests.executor": "Run",
     "JUnit.TaskServicesImplementationTest.UserCanViewListOfTask.executor": "Run",
     "JUnit.TaskServicesImplementationTest.executor": "Debug",
@@ -117,7 +98,7 @@
     "go.import.settings.migrated": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/DELL/IdeaProjects/TelevisionApp/src/TelevisionApp.java",
+    "last_opened_file_path": "C:/Users/DELL/Documents/GitHub/Todolist",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -160,29 +141,39 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #41">
-    <configuration name="generated-requests | #37" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="37" requestIdentifier="#37" runType="Run single request">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="generated-requests | #38" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="38" requestIdentifier="#38" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="generated-requests | #39" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="39" requestIdentifier="#39" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | #40" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="40" requestIdentifier="#40" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration name="generated-requests | #41" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="41" requestIdentifier="#41" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration name="generated-requests | #46" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="46" requestIdentifier="#46" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="todolist" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="TodolistProject.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TodolistProject.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Main" />
+        <item itemvalue="HTTP Request.generated-requests | #46" />
         <item itemvalue="HTTP Request.generated-requests | #41" />
         <item itemvalue="HTTP Request.generated-requests | #39" />
         <item itemvalue="HTTP Request.generated-requests | #38" />
-        <item itemvalue="HTTP Request.generated-requests | #40" />
-        <item itemvalue="HTTP Request.generated-requests | #37" />
       </list>
     </recent_temporary>
   </component>
@@ -215,7 +206,13 @@
       <workItem from="1715042825114" duration="18451000" />
       <workItem from="1715268704635" duration="20389000" />
       <workItem from="1715370918961" duration="13276000" />
-      <workItem from="1715810561722" duration="10047000" />
+      <workItem from="1715810561722" duration="10374000" />
+      <workItem from="1715955541098" duration="2782000" />
+      <workItem from="1716018965948" duration="4103000" />
+      <workItem from="1716060272861" duration="1374000" />
+      <workItem from="1716119830831" duration="568000" />
+      <workItem from="1716145716278" duration="719000" />
+      <workItem from="1716556406396" duration="1707000" />
     </task>
     <servers />
   </component>

@@ -211,7 +211,7 @@ public class TaskServicesImplementation implements TaskServices {
     @Override
     public List<CompletedTaskResponse> getCompletedTasksWithDateTime(CompletedTaskRequest completedTaskRequest) {
         Optional<User> userOptional = userRepository.findByUserName(completedTaskRequest.getUsername().toLowerCase().trim());
-        List<CompletedTaskResponse> completedTaskResponses = new ArrayList<>();
+        List<CompletedTaskResponse> completedTaskResponses = new ArrayList<CompletedTaskResponse>();
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -219,7 +219,7 @@ public class TaskServicesImplementation implements TaskServices {
                 List<Task> tasks = user.getTasks();
                 List<Task> completedTasks = tasks.stream()
                         .filter(task -> task.getStatus().equals(completedTaskRequest.getStatus()) && task.getAuthor().equalsIgnoreCase(completedTaskRequest.getUsername()))
-                        .collect(Collectors.toList());
+                        .toList();
 
                 if (!completedTasks.isEmpty()) {
                     completedTaskResponses = completedTasks.stream()
@@ -263,6 +263,4 @@ public class TaskServicesImplementation implements TaskServices {
         userRepository.save(assigneeUser);
         return assignTaskResponseMapper(assigneeUser);
     }
-
-
 }

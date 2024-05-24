@@ -3,9 +3,6 @@ package TodolistProject.controllers;
 
 import TodolistProject.dtos_requests.*;
 import TodolistProject.dtos_response.ApiResponse;
-import TodolistProject.dtos_response.CompletedTaskResponse;
-import TodolistProject.exceptions.TaskAlreadyCompletedException;
-import TodolistProject.exceptions.TaskNotFoundException;
 import TodolistProject.services.TaskServices;
 import TodolistProject.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
