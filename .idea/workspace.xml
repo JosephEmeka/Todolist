@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cc54682-2443-4de4-81e2-73761b109b3b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T045201.400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-04-15T051640.400.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/controllers/ServicesControllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/controllers/ServicesControllers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServicesImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TodolistProject/services/TaskServicesImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,75 +42,75 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "HTTP Request.All in generated-requests.executor": "Run",
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.generated-requests | #12.executor": "Run",
-    "HTTP Request.generated-requests | #15.executor": "Run",
-    "HTTP Request.generated-requests | #18.executor": "Run",
-    "HTTP Request.generated-requests | #19.executor": "Run",
-    "HTTP Request.generated-requests | #20.executor": "Run",
-    "HTTP Request.generated-requests | #22.executor": "Run",
-    "HTTP Request.generated-requests | #25.executor": "Run",
-    "HTTP Request.generated-requests | #26.executor": "Run",
-    "HTTP Request.generated-requests | #27.executor": "Run",
-    "HTTP Request.generated-requests | #29.executor": "Run",
-    "HTTP Request.generated-requests | #30.executor": "Run",
-    "HTTP Request.generated-requests | #32.executor": "Run",
-    "HTTP Request.generated-requests | #33.executor": "Run",
-    "HTTP Request.generated-requests | #34.executor": "Run",
-    "HTTP Request.generated-requests | #36.executor": "Run",
-    "HTTP Request.generated-requests | #37.executor": "Run",
-    "HTTP Request.generated-requests | #38.executor": "Run",
-    "HTTP Request.generated-requests | #39.executor": "Run",
-    "HTTP Request.generated-requests | #40.executor": "Run",
-    "HTTP Request.generated-requests | #41.executor": "Run",
-    "HTTP Request.generated-requests | #46.executor": "Run",
-    "JUnit.MainTests.executor": "Run",
-    "JUnit.TaskServicesImplementationTest.UserCanViewListOfTask.executor": "Run",
-    "JUnit.TaskServicesImplementationTest.executor": "Debug",
-    "JUnit.TaskServicesImplementationTest.testThatUserCanAddTask.executor": "Run",
-    "JUnit.UserServicesImplementationTest (1).executor": "Run",
-    "JUnit.UserServicesImplementationTest.executor": "Run",
-    "JUnit.UserServicesImplementationTest.testUserCanCreateTask.executor": "Run",
-    "JUnit.UserServicesImplementationTest.testUserCanDeleteTask.executor": "Debug",
-    "JUnit.UserServicesImplementationTest.test_UserCannotDeleteTaskWithoutLogin.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.Main (1).executor": "Run",
-    "Spring Boot.Main.executor": "Run",
-    "git-widget-placeholder": "master",
-    "go.import.settings.migrated": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/DELL/Documents/GitHub/Todolist",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;HTTP Request.All in generated-requests.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #12.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #15.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #18.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #19.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #20.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #22.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #25.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #26.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #27.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #29.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #30.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #32.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #33.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #34.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #36.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #37.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #38.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #39.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #40.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #41.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #46.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MainTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TaskServicesImplementationTest.UserCanViewListOfTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TaskServicesImplementationTest.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TaskServicesImplementationTest.testThatUserCanAddTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServicesImplementationTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServicesImplementationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServicesImplementationTest.testUserCanCreateTask.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServicesImplementationTest.testUserCanDeleteTask.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.UserServicesImplementationTest.test_UserCannotDeleteTaskWithoutLogin.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/DELL/Documents/GitHub/Todolist&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="TodolistProject.dtos_response" />
@@ -213,6 +207,8 @@
       <workItem from="1716119830831" duration="568000" />
       <workItem from="1716145716278" duration="719000" />
       <workItem from="1716556406396" duration="1707000" />
+      <workItem from="1716893253243" duration="1192000" />
+      <workItem from="1717063049168" duration="592000" />
     </task>
     <servers />
   </component>
