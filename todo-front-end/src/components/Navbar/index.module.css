@@ -1,23 +1,36 @@
+
+
 .navbar{
     display: flex;
     justify-content: space-between;
     padding: 0 45px;
-
-
 }
 
 .logoSection{
-
+    display:flex;
+    justify-content: center;
 }
 
 .midSection{
-
+    display:flex;
+    justify-content: center;
+    gap:100px;
+    font-weight: 500;
+    font-size: 20px;
+    align-items: center;
 
 }
 
-.login{
-
+.midSection > p{
+    color:#ff5b1a;
 }
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+}
+
 
 @media only screen and (min-width: 768px){
     .navbar{

@@ -1,6 +1,6 @@
 
 import styles from './index.module.css'
-import logo from '../../assets/TO.png'
+import logo from '../../assets/todopic.png'
 
 const Navbar = () => {
     return(
@@ -11,26 +11,34 @@ const Navbar = () => {
                 </div>
 
                 <div className={styles.midSection}>
+                    <p>Dashboard</p>
+                    <p>Calender</p>
+                    <p>Services</p>
 
                 </div>
 
-                <div className={styles.login}>
+                <div className={styles.buttons}>
                     <button style={{
-                        color: "#c2ba1d",
+                        color: "#ff5b1a",
                         background: "none",
                         border: "none",
-                        fontSize: "16px",
+                        fontSize: "18px",
                         fontWeight: "500"
                     }}>Login
                     </button>
 
-                    <button style={{
-                        color: "#c2ba1d",
-                        background: "none",
+                    <button
+                        style={{paddingTop: "10px",
+                            paddingBottom: "10px",
+                            paddingLeft: "25px",
+                            paddingRight: "25px",
+                            marginTop: "10px",
+                        borderRadius: "4px",
+                        background: "#ff5b1a",
+                        color: "#fff",
                         border: "none",
-                        fontSize: "16px",
-                        fontWeight: "500"
-                    }}>Sign up
+                    fontSize: "18px",}}
+                    >Sign up
                     </button>
                 </div>
 

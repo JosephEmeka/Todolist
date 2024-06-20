@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8cc54682-2443-4de4-81e2-73761b109b3b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-front-end/src/components/Navbar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/todo-front-end/src/components/Navbar/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo-front-end/src/components/Navbar/index.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/todo-front-end/src/components/Navbar/index.module.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
